@@ -1,0 +1,96 @@
+<div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content white-text">
+              <div class="row">
+                <div class="col s5">
+                  <form #playerForm="ngForm" (ngSubmit)="onSubmit(playerForm)">
+                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="playerService.selectedPlayer._id">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input type="text" name="name" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.name" placeholder="Enter full name" required>
+                        <label>Name :
+                          <label class="red-text">*</label>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input type="text" name="rank" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.rank" placeholder="10000">
+                        <label>Rank :</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input type="text" name="score" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.score" placeholder="Enter score">
+                        <label>Score :</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input type="text" name="time" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.time" placeholder="Enter time">
+                        <label>Time :</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                            <div class="input-field col s12">
+                              <input type="text" name="gamesPlayed" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.gamesPlayed" placeholder="Enter Games played">
+                              <label>Games Played :</label>
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="input-field col s12">
+                              <input type="text" name="status" #name="ngModel" [(ngModel)]="playerService.selectedPlayer.status" placeholder="Enter status">
+                              <label>Status :</label>
+                            </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <button class="btn btn-custom right" type="button" (click)="resetForm(playerForm)">Reset</button>
+                        <button class="btn btn-custom right" type="submit" [disabled]="!playerForm.valid">Submit</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="col s7">
+                    <table class="responsive-table highlight">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Rank</th>
+                            <th>Score</th>
+                            <th>Time</th>
+                            <th>Games Played</th>
+                            <th>Status</th>
+                            <th></th>
+                            
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tr *ngFor="let player1 of playerService.players">
+                          <td>{{player1.name}}</td>
+                          <td>{{player1.rank}}</td>
+                          <td>{{player1.score}}</td>
+                          <td>{{player1.time}}</td>
+                          <td>{{player1.gamesPlayed}}</td>
+                          <td>{{player1.status}}</td>
+                          <td>
+                            <!-- all the functions of the buttons defined in player.component.ts -->
+                              <a class="action-btn" (click)="onEdit(player1)">
+                                <i class="material-icons">edit</i>
+                              </a>
+                              <a class="action-btn" (click)="onDelete(player1._id,playerForm)">
+                                <i class="material-icons">delete</i>
+                              </a>
+                            </td>
+                        </tr>
+                      </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+            
